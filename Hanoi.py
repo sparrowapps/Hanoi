@@ -47,6 +47,8 @@ class Tower:
 		return False
 
 class Hanoi:
+	stepcount = 0
+	
 	def __init__ (self, pieces):
 		height = pieces
 		self.pieces = pieces
@@ -86,6 +88,9 @@ class Hanoi:
 		""" Move pieces pieces from first to last via middle in a recursive way using 2 ^ n - 1 steps"""
 		if (pieces == 1):
 			self.swap(first, last) #Base case
+			
+			self.stepcount = self.stepcount + 1
+			print("step count %d" % self.stepcount)
 			print(self)
 		else:
 			self.step(pieces - 1, first, middle, last) 		# Solve for n-1
@@ -97,4 +102,4 @@ class Hanoi:
 		""" Swap piece from tower1 to tower2 """
 		tower2.add_piece(tower1.remove_piece())
 
-Hanoi(8).solve()
+Hanoi(5).solve()
